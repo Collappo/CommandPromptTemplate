@@ -17,6 +17,7 @@ Command prompt template preview
     # or
     code $PROFILE
     ```
+    *`$PROFILE` - that is a path to the file that is loaded when PowerShell starts*
     
 4) Paste copied befor text into `$PROFILE` file and save.
 
