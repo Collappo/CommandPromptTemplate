@@ -9,3 +9,6 @@ Command prompt template preview
 
 ---
 
+## 🔨 Configutaring
+
+1) First, copy context of ![CommandPromptTemplate.ps1](CommandPromptTemplate.ps1)
