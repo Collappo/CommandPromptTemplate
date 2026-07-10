@@ -27,7 +27,7 @@ function prompt {
         Write-Host "\$dir" -NoNewline -ForegroundColor DarkGray
     }
     else {
-        Write-Host "\$dir" -NoNewline -ForegroundColor White
+        Write-Host "\$dir" -NoNewline -ForegroundColor Gray
     }
     Write-Host " >" -NoNewline -ForegroundColor Green
     return " "
