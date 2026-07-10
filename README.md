@@ -7,17 +7,19 @@ Command prompt template preview
 
 ---
 
-## 🔨 Configuration
+## How to setup?
 
 1) First, copy context of ![CommandPromptTemplate.ps1](CommandPromptTemplate.ps1)
-
 2) Edit `$PROFILE` file, type into terminal
-
+   
     ```powershell
     notepad $PROFILE
     # or
     code $PROFILE
     ```
-3) Paste copied befor text into `$PROFILE` file and save.
+    
+4) Paste copied befor text into `$PROFILE` file and save.
 
-#### Done :D
+    ***Done :D***
+
+---
