@@ -9,7 +9,7 @@ Command prompt template preview
 
 ## How to setup?
 
-1) First, copy context of ![CommandPromptTemplate.ps1](CommandPromptTemplate.ps1)
+1) First, copy context of [`CommandPromptTemplate.ps1`](CommandPromptTemplate.ps1)
 2) Edit `$PROFILE` file, type into terminal
    
     ```powershell
