@@ -16,19 +16,36 @@ Write-Host "'" -ForegroundColor DarkGray
 Write-Host "Command prompt by " -NoNewline -ForegroundColor DarkGray
 Write-Host "Collappo" -ForegroundColor Green
 
-function prompt {
-    #  $ \dir >
+$env:VIRTUAL_ENV_DISABLE_PROMPT = 1
 
-    $dir = (Split-Path -Leaf (Get-Location))
+function Get-VenvName {
+    if (-not $env:VIRTUAL_ENV) { return $null }
+
+    $cfg = Join-Path $env:VIRTUAL_ENV "pyvenv.cfg"
+    if (Test-Path $cfg) {
+        $line = Select-String -Path $cfg -Pattern '^\s*prompt\s*=\s*(.+?)\s*$' |
+            Select-Object -First 1
+        if ($line) { return $line.Matches[0].Groups[1].Value }
+    }
+
+    if ($env:VIRTUAL_ENV_PROMPT) { return $env:VIRTUAL_ENV_PROMPT.Trim('() ') }
+
+    return "venv"
+}
+
+function prompt {
+    #  $ \dir >        (without venv)
+    #  $ projectName > (venv active)
+    #  $ venv >        (venv active, name is not recognized)
+
+    $venv = Get-VenvName
+    $label = if ($venv) { $venv } else { "\" + (Split-Path -Leaf (Get-Location)) }
+
+    $color = if ($env:TERM_PROGRAM -eq "vscode") { "DarkGray" } else { "White" }
 
     Write-Host ""
     Write-Host "$ " -NoNewline -ForegroundColor Green
-    if ($env:TERM_PROGRAM -eq "vscode") {
-        Write-Host "\$dir" -NoNewline -ForegroundColor DarkGray
-    }
-    else {
-        Write-Host "\$dir" -NoNewline -ForegroundColor Gray
-    }
+    Write-Host $label -NoNewline -ForegroundColor $color
     Write-Host " >" -NoNewline -ForegroundColor Green
     return " "
 }
